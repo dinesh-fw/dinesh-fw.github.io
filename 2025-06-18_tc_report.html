@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FD [1P] Test Cases Analysis Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .summary-box {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .metric {
+            display: inline-block;
+            margin: 10px 20px 10px 0;
+        }
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1976d2;
+        }
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        .section {
+            margin: 30px 0;
+        }
+        .center {
+            text-align: center;
+        }
+        .right {
+            text-align: right;
+        }
+        .weightage-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+        .health-indicator {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .weightage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .weightage-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .weightage-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .weightage-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+        .recommendation {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 15px;
+        }
+        .recommendation-icon {
+            color: #f39c12;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FD Product - [1P] Test Cases Analysis Report</h1>
+        
+        <div class="summary-box">
+            <h2>Executive Summary</h2>
+            <div class="metric">
+                <div class="metric-value">2,504</div>
+                <div class="metric-label">Total Test Cases</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">24</div>
+                <div class="metric-label">One Product Features</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">14</div>
+                <div class="metric-label">Squads Involved</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">84.38%</div>
+                <div class="metric-label">Overall Automation Coverage</div>
+            </div>
+        </div>
+
+        <div class="weightage-box">
+            <h2>Test Case Weightage Analysis 
+                <span class="health-indicator" style="background-color: #FFC107;">Fair</span>
+            </h2>
+            <div class="weightage-grid">
+                <div class="weightage-item">
+                    <div class="weightage-title">API Test Cases</div>
+                    <div class="weightage-value">1,397 (55.8%)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 55.79%; background-color: #2196F3;"></div>
+                    </div>
+                </div>
+                <div class="weightage-item">
+                    <div class="weightage-title">Functional Test Cases</div>
+                    <div class="weightage-value">1,107 (44.2%)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 44.21%; background-color: #FF9800;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="recommendation">
+                <span class="recommendation-icon">💡</span> <strong>Recommendation:</strong> Good test distribution. Consider adding more API tests for critical workflows to improve coverage efficiency.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Overall Automation Coverage</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th class="center">Count</th>
+                        <th class="center">Percentage</th>
+                        <th>Visual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Automated (Including In Stability Check)</strong></td>
+                        <td class="center">2,113</td>
+                        <td class="center">84.38%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84.38%"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Not Automated</strong></td>
+                        <td class="center">391</td>
+                        <td class="center">15.62%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 15.620000000000005%; background-color: #f44336;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Test Type Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Type</th>
+                        <th class="center">Total Cases</th>
+                        <th class="center">Automated</th>
+                        <th class="center">Not Automated</th>
+                        <th class="center">Automation Coverage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>API</strong></td>
+                        <td class="center">1,397</td>
+                        <td class="center">1,115</td>
+                        <td class="center">282</td>
+                        <td class="center">79.81%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Functional</strong></td>
+                        <td class="center">1,107</td>
+                        <td class="center">998</td>
+                        <td class="center">109</td>
+                        <td class="center">90.15%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Automation Status Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Automation Status</th>
+                        <th class="center">Count</th>
+                        <th class="center">Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>In Stability Check</td>
+                        <td class="center">1,705</td>
+                        <td class="center">68.09%</td>
+                    </tr>
+                    <tr>
+                        <td>Automated</td>
+                        <td class="center">408</td>
+                        <td class="center">16.29%</td>
+                    </tr>
+                    <tr>
+                        <td>Automation In Progress</td>
+                        <td class="center">370</td>
+                        <td class="center">14.78%</td>
+                    </tr>
+                    <tr>
+                        <td>Not Automated</td>
+                        <td class="center">19</td>
+                        <td class="center">0.76%</td>
+                    </tr>
+                    <tr>
+                        <td>Manual</td>
+                        <td class="center">2</td>
+                        <td class="center">0.08%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Breakdown by One Product Feature</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th class="center">Total Cases</th>
+                        <th class="center">Automated</th>
+                        <th class="center">Not Automated</th>
+                        <th class="center">Coverage %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>[1P] - Webchat Omniroute</td>
+                        <td class="center">505</td>
+                        <td class="center">299</td>
+                        <td class="center">206</td>
+                        <td class="center">59.21%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Sla config via abacus</td>
+                        <td class="center">472</td>
+                        <td class="center">447</td>
+                        <td class="center">25</td>
+                        <td class="center">94.70%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Ticket fragments</td>
+                        <td class="center">341</td>
+                        <td class="center">295</td>
+                        <td class="center">46</td>
+                        <td class="center">86.51%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Web chat source</td>
+                        <td class="center">304</td>
+                        <td class="center">304</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Advanced routing via wildcat</td>
+                        <td class="center">171</td>
+                        <td class="center">171</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Visitors persona</td>
+                        <td class="center">146</td>
+                        <td class="center">122</td>
+                        <td class="center">24</td>
+                        <td class="center">83.56%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Ticket details enhancement</td>
+                        <td class="center">108</td>
+                        <td class="center">104</td>
+                        <td class="center">4</td>
+                        <td class="center">96.30%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Quick list view</td>
+                        <td class="center">96</td>
+                        <td class="center">79</td>
+                        <td class="center">17</td>
+                        <td class="center">82.29%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Agent Availability</td>
+                        <td class="center">77</td>
+                        <td class="center">54</td>
+                        <td class="center">23</td>
+                        <td class="center">70.13%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Source info</td>
+                        <td class="center">73</td>
+                        <td class="center">71</td>
+                        <td class="center">2</td>
+                        <td class="center">97.26%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Wildcat agent status</td>
+                        <td class="center">44</td>
+                        <td class="center">17</td>
+                        <td class="center">27</td>
+                        <td class="center">38.64%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Web chat widget configs</td>
+                        <td class="center">31</td>
+                        <td class="center">31</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Webchat Quick Automations</td>
+                        <td class="center">23</td>
+                        <td class="center">18</td>
+                        <td class="center">5</td>
+                        <td class="center">78.26%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Web chat widget</td>
+                        <td class="center">17</td>
+                        <td class="center">8</td>
+                        <td class="center">9</td>
+                        <td class="center">47.06%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Handle Notes Limit</td>
+                        <td class="center">16</td>
+                        <td class="center">16</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Source icon</td>
+                        <td class="center">16</td>
+                        <td class="center">16</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Granular due by filter</td>
+                        <td class="center">13</td>
+                        <td class="center">13</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Unified Editor</td>
+                        <td class="center">13</td>
+                        <td class="center">13</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Ticket list enhancement</td>
+                        <td class="center">9</td>
+                        <td class="center">9</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Rounded avatar</td>
+                        <td class="center">9</td>
+                        <td class="center">9</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Real-time messages</td>
+                        <td class="center">8</td>
+                        <td class="center">7</td>
+                        <td class="center">1</td>
+                        <td class="center">87.50%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Channels Bulk Reply</td>
+                        <td class="center">5</td>
+                        <td class="center">5</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Contact timeline revamp</td>
+                        <td class="center">5</td>
+                        <td class="center">5</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Sla calculation via abacus</td>
+                        <td class="center">2</td>
+                        <td class="center">0</td>
+                        <td class="center">2</td>
+                        <td class="center">0.00%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Breakdown by Squad</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Squad</th>
+                        <th class="center">Total Cases</th>
+                        <th class="center">Automated</th>
+                        <th class="center">Not Automated</th>
+                        <th class="center">Coverage %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A-Team</td>
+                        <td class="center">529</td>
+                        <td class="center">421</td>
+                        <td class="center">108</td>
+                        <td class="center">79.58%</td>
+                    </tr>
+                    <tr>
+                        <td>Mavericks</td>
+                        <td class="center">509</td>
+                        <td class="center">410</td>
+                        <td class="center">99</td>
+                        <td class="center">80.55%</td>
+                    </tr>
+                    <tr>
+                        <td>Pirates</td>
+                        <td class="center">461</td>
+                        <td class="center">447</td>
+                        <td class="center">14</td>
+                        <td class="center">96.96%</td>
+                    </tr>
+                    <tr>
+                        <td>Rajput Royals</td>
+                        <td class="center">375</td>
+                        <td class="center">343</td>
+                        <td class="center">32</td>
+                        <td class="center">91.47%</td>
+                    </tr>
+                    <tr>
+                        <td>Spartans</td>
+                        <td class="center">238</td>
+                        <td class="center">188</td>
+                        <td class="center">50</td>
+                        <td class="center">78.99%</td>
+                    </tr>
+                    <tr>
+                        <td>Rashtrakutas</td>
+                        <td class="center">151</td>
+                        <td class="center">127</td>
+                        <td class="center">24</td>
+                        <td class="center">84.11%</td>
+                    </tr>
+                    <tr>
+                        <td>Ganges Gangsters</td>
+                        <td class="center">92</td>
+                        <td class="center">57</td>
+                        <td class="center">35</td>
+                        <td class="center">61.96%</td>
+                    </tr>
+                    <tr>
+                        <td>ShadowFax</td>
+                        <td class="center">54</td>
+                        <td class="center">54</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Chalukyas</td>
+                        <td class="center">31</td>
+                        <td class="center">31</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Dravidian Dynamos</td>
+                        <td class="center">23</td>
+                        <td class="center">18</td>
+                        <td class="center">5</td>
+                        <td class="center">78.26%</td>
+                    </tr>
+                    <tr>
+                        <td>Chera super kings</td>
+                        <td class="center">17</td>
+                        <td class="center">8</td>
+                        <td class="center">9</td>
+                        <td class="center">47.06%</td>
+                    </tr>
+                    <tr>
+                        <td>SuicideSquad</td>
+                        <td class="center">13</td>
+                        <td class="center">0</td>
+                        <td class="center">13</td>
+                        <td class="center">0.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Autobots</td>
+                        <td class="center">10</td>
+                        <td class="center">8</td>
+                        <td class="center">2</td>
+                        <td class="center">80.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Hackers & Painters</td>
+                        <td class="center">1</td>
+                        <td class="center">1</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Complete List of One Product Features (24 Total)</h2>
+            <ol style="columns: 2; column-gap: 40px;">
+                <li>[1P] - Webchat Omniroute</li>
+                <li>[1P] - Sla config via abacus</li>
+                <li>[1P] - Ticket fragments</li>
+                <li>[1P] - Web chat source</li>
+                <li>[1P] - Advanced routing via wildcat</li>
+                <li>[1P] - Visitors persona</li>
+                <li>[1P] - Ticket details enhancement</li>
+                <li>[1P] - Quick list view</li>
+                <li>[1P] - Agent Availability</li>
+                <li>[1P] - Source info</li>
+                <li>[1P] - Wildcat agent status</li>
+                <li>[1P] - Web chat widget configs</li>
+                <li>[1P] - Webchat Quick Automations</li>
+                <li>[1P] - Web chat widget</li>
+                <li>[1P] - Handle Notes Limit</li>
+                <li>[1P] - Source icon</li>
+                <li>[1P] - Granular due by filter</li>
+                <li>[1P] - Unified Editor</li>
+                <li>[1P] - Ticket list enhancement</li>
+                <li>[1P] - Rounded avatar</li>
+                <li>[1P] - Real-time messages</li>
+                <li>[1P] - Channels Bulk Reply</li>
+                <li>[1P] - Contact timeline revamp</li>
+                <li>[1P] - Sla calculation via abacus</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2>Complete List of Squads (14 Total)</h2>
+            <ol style="columns: 2; column-gap: 40px;">
+                <li>A-Team</li>
+                <li>Mavericks</li>
+                <li>Pirates</li>
+                <li>Rajput Royals</li>
+                <li>Spartans</li>
+                <li>Rashtrakutas</li>
+                <li>Ganges Gangsters</li>
+                <li>ShadowFax</li>
+                <li>Chalukyas</li>
+                <li>Dravidian Dynamos</li>
+                <li>Chera super kings</li>
+                <li>SuicideSquad</li>
+                <li>Autobots</li>
+                <li>Hackers & Painters</li>
+            </ol>
+        </div>
+
+        <div class="section" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd;">
+            <p style="text-align: center; color: #666; font-size: 14px;">
+                Generated on: 2025-06-18 11:43:44
+            </p>
+        </div>
+    </div>
+</body>
+</html>
