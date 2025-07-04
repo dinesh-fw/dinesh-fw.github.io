@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FD [1P] Test Cases Analysis Report</title>
+    <style>
+        
+        :root {
+            --primary-color: #3498db;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --info-color: #1abc9c;
+            --dark-color: #34495e;
+            --light-color: #ecf0f1;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Navigation Menu Styles */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--dark-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        
+        .nav-brand {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-links a.active {
+            color: white;
+            background-color: var(--primary-color);
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            z-index: 999;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            text-align: center;
+            scroll-margin-top: 80px;
+        }
+        
+        h1 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .timestamp {
+            color: #777;
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .summary-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            padding: 25px;
+            background-color: #e3f2fd;
+            border-radius: var(--border-radius);
+        }
+        
+        .metric {
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+            scroll-margin-top: 80px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+        }
+        
+        th:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        
+        .weightage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .weightage-item {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .weightage-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .weightage-value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .health-indicator {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .recommendation {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .recommendation-icon {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        
+        /* Key Insights Styles */
+        .insights-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .insight {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .insight-success {
+            background-color: rgba(46, 204, 113, 0.05);
+            border-left-color: var(--success-color);
+        }
+        
+        .insight-warning {
+            background-color: rgba(243, 156, 18, 0.05);
+            border-left-color: var(--warning-color);
+        }
+        
+        .insight-danger {
+            background-color: rgba(231, 76, 60, 0.05);
+            border-left-color: var(--danger-color);
+        }
+        
+        .insight-info {
+            background-color: rgba(52, 152, 219, 0.05);
+            border-left-color: var(--primary-color);
+        }
+        
+        .insight-icon {
+            font-size: 24px;
+            width: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        .insight-success .insight-icon { color: var(--success-color); }
+        .insight-warning .insight-icon { color: var(--warning-color); }
+        .insight-danger .insight-icon { color: var(--danger-color); }
+        .insight-info .insight-icon { color: var(--primary-color); }
+        
+        .insight-content {
+            flex: 1;
+        }
+        
+        .insight-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+        
+        .insight-description {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #777;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 20px;
+            }
+            
+            .nav-brand {
+                margin-bottom: 10px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 12px;
+                padding: 3px 8px;
+            }
+            
+            .summary-box {
+                grid-template-columns: 1fr;
+            }
+            
+            .weightage-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            th, td {
+                padding: 8px;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <div class="nav-container">
+            <div class="nav-brand">Test Case Analysis Dashboard</div>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#insights">Key Insights</a></li>
+                <li><a href="#weightage">Test Weightage</a></li>
+                <li><a href="#automation">Automation Status</a></li>
+                <li><a href="#test-types">Test Types</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#squads">Squads</a></li>
+                <li><a href="#severity">Severity</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" title="Go to top">↑</button>
+    
+    <div class="container" style="padding-top: 80px;">
+        <header id="overview">
+            <h1>FD Product - [1P] Test Cases Analysis</h1>
+            <p>Comprehensive analysis of test case distribution, automation coverage, and quality metrics</p>
+            
+            <div class="summary-box">
+                <div class="metric">
+                    <div class="metric-value">2,772</div>
+                    <div class="metric-label">Total Test Cases</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">23</div>
+                    <div class="metric-label">One Product Features</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">14</div>
+                    <div class="metric-label">Squads Involved</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">88.64%</div>
+                    <div class="metric-label">Overall Automation Coverage</div>
+                </div>
+            </div>
+            
+            <p class="timestamp">Generated on: July 04, 2025 at 09:48 AM</p>
+        </header>
+
+        <div class="section" id="insights">
+            <h2 class="section-title">Key Insights and Recommendations</h2>
+            <p style="margin-bottom: 20px;">Analysis-driven insights to improve test strategy and efficiency:</p>
+            <div class="insights-container">
+                
+            <div class="insight insight-success">
+                <div class="insight-icon">✓</div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Excellent Automation Coverage</h3>
+                    <p class="insight-description">The test suite has 88.6% automation coverage, indicating mature test automation practices.</p>
+                </div>
+            </div>
+        
+            <div class="insight insight-info">
+                <div class="insight-icon">ℹ</div>
+                <div class="insight-content">
+                    <h3 class="insight-title">High Complexity Features Identified</h3>
+                    <p class="insight-description">5 features have significantly more tests than average (121), indicating higher complexity.</p>
+                </div>
+            </div>
+        
+            <div class="insight insight-danger">
+                <div class="insight-icon">✗</div>
+                <div class="insight-content">
+                    <h3 class="insight-title">Critical Tests Need More Automation</h3>
+                    <p class="insight-description">Only 87.5% of critical/high severity tests are automated. These should be prioritized.</p>
+                </div>
+            </div>
+        
+            </div>
+        </div>
+
+        <div class="section" id="weightage">
+            <h2 class="section-title">Test Case Weightage Analysis 
+                <span class="health-indicator" style="background-color: #FFC107;">Fair</span>
+            </h2>
+            <div class="weightage-grid">
+                <div class="weightage-item">
+                    <div class="weightage-title">API Test Cases</div>
+                    <div class="weightage-value">1,575 (56.8%)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 56.82%; background-color: #2196F3;"></div>
+                    </div>
+                </div>
+                <div class="weightage-item">
+                    <div class="weightage-title">Functional Test Cases</div>
+                    <div class="weightage-value">1,197 (43.2%)</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 43.18%; background-color: #FF9800;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="recommendation">
+                <span class="recommendation-icon">💡</span> <strong>Recommendation:</strong> Good test distribution. Consider adding more API tests for critical workflows to improve coverage efficiency.
+            </div>
+        </div>
+
+        <div class="section" id="automation">
+            <h2 class="section-title">Automation Status Breakdown</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Automation Status</th>
+                        <th class="center">Count</th>
+                        <th class="center">Percentage</th>
+                        <th>Visual</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>In Stability Check</td>
+                        <td class="center">2,002</td>
+                        <td class="center">72.22%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 72.22%; background-color: #4CAF50;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Automated</td>
+                        <td class="center">455</td>
+                        <td class="center">16.41%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 16.41%; background-color: #4CAF50;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Automation In Progress</td>
+                        <td class="center">301</td>
+                        <td class="center">10.86%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 10.86%; background-color: #f44336;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Not Automated</td>
+                        <td class="center">12</td>
+                        <td class="center">0.43%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0.43%; background-color: #f44336;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Manual</td>
+                        <td class="center">2</td>
+                        <td class="center">0.07%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0.07%; background-color: #f44336;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="test-types">
+            <h2 class="section-title">Test Type Distribution</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Type</th>
+                        <th class="center">Total Cases</th>
+                        <th class="center">Automated</th>
+                        <th class="center">Not Automated</th>
+                        <th class="center">Automation Coverage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>API</strong></td>
+                        <td class="center">1,575</td>
+                        <td class="center">1,329</td>
+                        <td class="center">246</td>
+                        <td class="center">84.38%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Functional</strong></td>
+                        <td class="center">1,197</td>
+                        <td class="center">1,128</td>
+                        <td class="center">69</td>
+                        <td class="center">94.24%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="features">
+            <h2 class="section-title">Feature-wise Analysis</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th class="center">Total Cases</th>
+                        <th class="center">Automated</th>
+                        <th class="center">Not Automated</th>
+                        <th class="center">Coverage %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>[1P] - Webchat Omniroute</td>
+                        <td class="center">526</td>
+                        <td class="center">354</td>
+                        <td class="center">172</td>
+                        <td class="center">67.30%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Sla config via abacus</td>
+                        <td class="center">501</td>
+                        <td class="center">462</td>
+                        <td class="center">39</td>
+                        <td class="center">92.22%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Ticket fragments</td>
+                        <td class="center">374</td>
+                        <td class="center">341</td>
+                        <td class="center">33</td>
+                        <td class="center">91.18%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Web chat source</td>
+                        <td class="center">304</td>
+                        <td class="center">304</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Quick list view</td>
+                        <td class="center">259</td>
+                        <td class="center">240</td>
+                        <td class="center">19</td>
+                        <td class="center">92.66%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Advanced routing via wildcat</td>
+                        <td class="center">171</td>
+                        <td class="center">171</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Visitors persona</td>
+                        <td class="center">155</td>
+                        <td class="center">145</td>
+                        <td class="center">10</td>
+                        <td class="center">93.55%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Ticket details enhancement</td>
+                        <td class="center">109</td>
+                        <td class="center">106</td>
+                        <td class="center">3</td>
+                        <td class="center">97.25%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Agent Availability</td>
+                        <td class="center">77</td>
+                        <td class="center">54</td>
+                        <td class="center">23</td>
+                        <td class="center">70.13%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Source info</td>
+                        <td class="center">76</td>
+                        <td class="center">73</td>
+                        <td class="center">3</td>
+                        <td class="center">96.05%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Wildcat agent status</td>
+                        <td class="center">51</td>
+                        <td class="center">39</td>
+                        <td class="center">12</td>
+                        <td class="center">76.47%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Web chat widget configs</td>
+                        <td class="center">31</td>
+                        <td class="center">31</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Webchat Quick Automations</td>
+                        <td class="center">27</td>
+                        <td class="center">27</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Handle Notes Limit</td>
+                        <td class="center">16</td>
+                        <td class="center">16</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Web chat widget</td>
+                        <td class="center">16</td>
+                        <td class="center">16</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Source icon</td>
+                        <td class="center">16</td>
+                        <td class="center">16</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Unified Editor</td>
+                        <td class="center">13</td>
+                        <td class="center">13</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Granular due by filter</td>
+                        <td class="center">13</td>
+                        <td class="center">13</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Real-time messages</td>
+                        <td class="center">9</td>
+                        <td class="center">8</td>
+                        <td class="center">1</td>
+                        <td class="center">88.89%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Ticket list enhancement</td>
+                        <td class="center">9</td>
+                        <td class="center">9</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Rounded avatar</td>
+                        <td class="center">9</td>
+                        <td class="center">9</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Channels Bulk Reply</td>
+                        <td class="center">5</td>
+                        <td class="center">5</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>[1P] - Contact timeline revamp</td>
+                        <td class="center">5</td>
+                        <td class="center">5</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="squads">
+            <h2 class="section-title">Squad-wise Distribution</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Squad</th>
+                        <th class="center">Total Cases</th>
+                        <th class="center">Automated</th>
+                        <th class="center">Not Automated</th>
+                        <th class="center">Coverage %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rajput Royals</td>
+                        <td class="center">577</td>
+                        <td class="center">554</td>
+                        <td class="center">23</td>
+                        <td class="center">96.01%</td>
+                    </tr>
+                    <tr>
+                        <td>A-Team</td>
+                        <td class="center">551</td>
+                        <td class="center">439</td>
+                        <td class="center">112</td>
+                        <td class="center">79.67%</td>
+                    </tr>
+                    <tr>
+                        <td>Mavericks</td>
+                        <td class="center">507</td>
+                        <td class="center">446</td>
+                        <td class="center">61</td>
+                        <td class="center">87.97%</td>
+                    </tr>
+                    <tr>
+                        <td>Pirates</td>
+                        <td class="center">488</td>
+                        <td class="center">462</td>
+                        <td class="center">26</td>
+                        <td class="center">94.67%</td>
+                    </tr>
+                    <tr>
+                        <td>Spartans</td>
+                        <td class="center">245</td>
+                        <td class="center">210</td>
+                        <td class="center">35</td>
+                        <td class="center">85.71%</td>
+                    </tr>
+                    <tr>
+                        <td>Rashtrakutas</td>
+                        <td class="center">160</td>
+                        <td class="center">150</td>
+                        <td class="center">10</td>
+                        <td class="center">93.75%</td>
+                    </tr>
+                    <tr>
+                        <td>Ganges Gangsters</td>
+                        <td class="center">93</td>
+                        <td class="center">59</td>
+                        <td class="center">34</td>
+                        <td class="center">63.44%</td>
+                    </tr>
+                    <tr>
+                        <td>ShadowFax</td>
+                        <td class="center">54</td>
+                        <td class="center">54</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Chalukyas</td>
+                        <td class="center">31</td>
+                        <td class="center">31</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Dravidian Dynamos</td>
+                        <td class="center">27</td>
+                        <td class="center">27</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Chera super kings</td>
+                        <td class="center">16</td>
+                        <td class="center">16</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                    <tr>
+                        <td>SuicideSquad</td>
+                        <td class="center">13</td>
+                        <td class="center">0</td>
+                        <td class="center">13</td>
+                        <td class="center">0.00%</td>
+                    </tr>
+                    <tr>
+                        <td>Autobots</td>
+                        <td class="center">9</td>
+                        <td class="center">8</td>
+                        <td class="center">1</td>
+                        <td class="center">88.89%</td>
+                    </tr>
+                    <tr>
+                        <td>Hackers & Painters</td>
+                        <td class="center">1</td>
+                        <td class="center">1</td>
+                        <td class="center">0</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="severity">
+            <h2 class="section-title">Severity-wise Coverage</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Severity</th>
+                        <th class="center">Total Cases</th>
+                        <th class="center">Automated</th>
+                        <th class="center">Automation Coverage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>High</td>
+                        <td class="center">2,433</td>
+                        <td class="center">2,129</td>
+                        <td class="center">87.51%</td>
+                    </tr>
+                    <tr>
+                        <td>Medium</td>
+                        <td class="center">306</td>
+                        <td class="center">298</td>
+                        <td class="center">97.39%</td>
+                    </tr>
+                    <tr>
+                        <td>Low</td>
+                        <td class="center">22</td>
+                        <td class="center">19</td>
+                        <td class="center">86.36%</td>
+                    </tr>
+                    <tr>
+                        <td>Critical</td>
+                        <td class="center">11</td>
+                        <td class="center">11</td>
+                        <td class="center">100.00%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>Generated on July 04, 2025 at 09:48 AM | Product: FD | Feature Pattern: [1P]</p>
+            <p>© 2025 Test Case Analysis Dashboard. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Highlight active section in navigation
+        const sections = document.querySelectorAll('.section, header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
